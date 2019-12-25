@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 public class deleteType extends ActionSupport implements ServletRequestAware {
     HttpServletRequest httpServletRequest;
     IDeleteTypeService service;
+    //一类id
+    int id;
     @Autowired
     public void setService(IDeleteTypeService service) {
 
@@ -31,16 +33,25 @@ public class deleteType extends ActionSupport implements ServletRequestAware {
     public String deleteTypeTwo(){
         /*子类id获取,为删除子类*/
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
-        service.deleteTypeTwo(id);
-        /*父类id获取,为返回页面做准备*/
         int type1 = Integer.parseInt(httpServletRequest.getParameter("type1"));
-
-        httpServletRequest.setAttribute("id",type1);
+        service.deleteTypeTwo(id);
+        System.out.println("删除完成");
+        /*父类id获取,为返回页面做准备*/
+        this.setId(type1);
         return SUCCESS;
     }
 
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
+
         this.httpServletRequest=httpServletRequest;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

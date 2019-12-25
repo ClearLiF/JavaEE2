@@ -43,8 +43,7 @@ public class DeleteTypeDao  implements IDeleteType  {
 
     @Override
     public int deleteTypeTwo(int id) {
-      Session session =  template.getSessionFactory().openSession();
-        session.getTransaction().begin();
+        //session.getTransaction().begin();
         System.out.println("传过来的id为"+id);
 
         List<?> list = template.findByNamedParam("from TbType2 u where u.id =:name",
@@ -52,14 +51,13 @@ public class DeleteTypeDao  implements IDeleteType  {
                 id);
         TbType2 tbType = (TbType2) list.get(0);
         System.out.println(tbType);
-        tbType.setTbTypeByTypeid(null);
+       // tbType.setTbTypeByTypeid(null);
 
-        session.update(tbType);
-        session.getTransaction().commit();
-        session.delete(tbType);
-        session.getTransaction().commit();
+        //template.update(tbType);
+        template.delete(tbType);
+
         System.out.println("执行");
-         session.close();
+        // session.close();
         return 0;
     }
 }

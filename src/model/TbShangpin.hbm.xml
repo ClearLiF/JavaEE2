@@ -22,7 +22,7 @@
         <property name="shichangjia" column="shichangjia"/>
         <property name="pinpai" column="pinpai"/>
         <property name="tejia" column="tejia"/>
-        <set name="tbPingluns" cascade="save-update,delete">
+        <set name="tbPingluns" cascade="delete">
             <key column="spid"/>
             <one-to-many class="model.TbPinglun"/>
         </set>

@@ -70,6 +70,13 @@
         <action name="addGood" class="action.goodAction.addGoodAction">
             <result name="success" type="redirect">getGoods.action</result>
         </action>
+        <!--修改商品信息-->
+        <action name="defineGoodRedirect" class="action.goodAction.getGoodMore" method="defineGood">
+            <result name="success">/com.shangpin/gooddefine.jsp</result>
+        </action>
+        <action name="defineGood" class="action.goodAction.defineGoodAction" >
+            <result name="success" type="chain">getGoods</result>
+        </action>
         <!--查询action-->
         <action name="search" class="action.goodAction.addGoodActionRedirect">
             <result name="success">/com.shangpin/search.jsp</result>
@@ -99,7 +106,10 @@
         </action>
         <!--删除指定id子类类型-->
         <action name="deleteType2" class="action.type.deleteType" method="deleteTypeTwo">
-            <result name="success" type="redirect">defineTypeSecond.action</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">defineTypeSecond</param>
+                <param name="id">${id}</param>
+            </result>
         </action>
 
         <!--添加一类类型-->
@@ -113,6 +123,14 @@
                 <!--一类类型id-->
                 <param name="id">${id}</param>
             </result>
+        </action>
+        <!--获取所有订单-->
+        <action name="getAllDingdan" class="action.dingdan.getDingDan" method="getAll">
+            <result name="success">/com.dingdan/dingdan.jsp</result>
+        </action>
+        <!--发货-->
+        <action name="sendDingDan" class="action.dingdan.getDingDan" method="sendDingdan">
+            <result name="success" type="chain">getAllDingdan</result>
         </action>
     </package>
 </struts>

@@ -3,19 +3,20 @@
 <%@ page import="model.TbShangpin" %>
 <%@ page import="model.TbType" %>
 <%@ page import="model.TbType2" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%
     String path=request.getContextPath();
-    TbShangpin item = (TbShangpin)session.getAttribute("Goodmore");
+
+	ActionContext context = ActionContext.getContext();
+    TbShangpin item = (TbShangpin )context.getSession().get("Goodmore");
+	ArrayList<TbType> listType1 = (ArrayList<TbType>)context.getSession().get("alltype") ;
+	session.removeAttribute("alltype");
+	session.removeAttribute("Goodmore");
+	if(item==null){
+		item= new TbShangpin();
+	}
     String path2="/images/";
 
-    ArrayList<TbType> listType1 = (ArrayList<TbType>) session.getAttribute("alltype");
-	session.removeAttribute("alltype");
-    session.removeAttribute("Goodmore");
-	if(item==null){
-	  item= new TbShangpin();
-	}
-	session.setAttribute("add", "add");
     %>
 <!DOCTYPE html>
 <html>
@@ -25,27 +26,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="<%=path%>/GoodsAddServlet" method="post" name="hide">
-<input type="hidden" name="add" value="add">
-</form>
 
 <center>
 
-<form action="<s:url namespace="/manage" action="addGood"/>" method="post" name="frm" class="smart-green" enctype="multipart/form-data" >
+<form action="<%=path%>/manage/defineGood.action" method="post" name="frm" class="smart-green" enctype="multipart/form-data" >
 	<h1>商品
-        <span>添加页面.</span>
+        <span>修改页面.</span>
     </h1>
-    <input type="file" name="file" value="" onchange='checkFileType(this.value);'><img src="<%=path2+item.getTupian()%>" width="60" height="50" border="1"/>
+    <input type="file" name="file" value="" onchange='checkFileType(this.value);' ><img src="<%=path2+item.getTupian()%>" width="60" height="50" border="1"/>
+	<%=item.getTupian()%>
+	<input type="hidden" name="tupian" value="<%=item.getTupian()%>" >
 	<div class="">
 		<label class="">名称</label>
 		<div>
-			<input type="text" name="mingcheng" placeholder="请添加名称" value="">
+			<input type="text" name="mingcheng" placeholder="请修改名称" value=<%=item.getMingcheng() %>>
 		</div>
 	</div>
 	<div class="">
 		<label class="">简介</label>
 		<div>
-			<input type="text" name="jianjie" placeholder="请添加简介" value="">
+			<input type="text" name="jianjie" placeholder="请修改简介" value=<%=item.getJianjie() %>>
 		</div>
 	</div>
 	
@@ -54,9 +54,9 @@
     <div class="">
       <select name="dengji" >
         <option value=""></option>
-        <option value="0">差</option>
-        <option value="1" selected>中</option>
-        <option value="2">优</option>
+        <option value="0"  <%=item.getDengji().equals(new String("0"))?"selected":""%>>差</option>
+        <option value="1" <%=item.getDengji().equals(new String("1"))?"selected":""%>>中</option>
+        <option value="2" <%=item.getDengji().equals(new String("2"))?"selected":""%>>优</option>
        
       </select>
     </div>
@@ -64,58 +64,60 @@
   <div class="">
 		<label class="">型号</label>
 		<div>
-			<input type="text" name="xinghao" placeholder="添加型号" value="">
+			<input type="text" name="xinghao" placeholder="请修改型号" value=<%=item.getXinghao() %>>
 		</div>
 	</div>
 	<div class="">
 		<label class="">品牌</label>
 		<div>
-			<input type="text" name="pinpai" placeholder="请添加品牌" value="">
+			<input type="text" name="pinpai" placeholder="请修改品牌" value=<%=item.getPinpai() %>>
 		</div>
 	</div>
 	<div class="">
 		<label class="">数量</label>
 		<div>
-			<input type="text" name="shuliang" placeholder="请添加数量" value="">
+			<input type="text" name="shuliang" placeholder="请修改名称" value=<%=item.getShuliang() %>>
 		</div>
 	</div>
 	<div>
-	<tr><td><input type="radio" name="tuijian" value="0" checked>推荐<input type=radio name="tuijian" value="1" >不推荐</td><tr>
-	<tr><td><select name="typeid" id="typeid" onChange="changeType()">
-				<option value="" selected>请选择你要的类型</option>
-        <%for(int i=0;i<listType1.size();i++) {%>
-        		<option value="<%=listType1.get(i).getId()%>"><%=listType1.get(i).getTypename() %></option>
-        		
-       <%} %>
-      </select></td><td><select id="type2Id" name="type2Id">
-        <option value=" cs" ></option>
-        
-       
-      </select></td></tr>
+	<tr><td><input type="radio" name="tuijian" value="0" <%=item.getTuijian()==0?"checked":"" %>>推荐<input type=radio name="tuijian" value="1" <%=item.getTuijian()==1?"checked":"" %>>不推荐</td><tr>
+		<tr><td><select name="typeid" id="typeid" onChange="changeType()">
+			<option value="" selected>请选择你要的类型</option>
+			<%for(int i=0;i<listType1.size();i++) {%>
+			<option value="<%=listType1.get(i).getId()%>"><%=listType1.get(i).getTypename() %></option>
+
+			<%} %>
+		</select></td><td><select id="type2Id" name="type2Id">
+			<option value=" cs" ></option>
+
+
+		</select></td></tr>
+
 	
 	
-	
+	<input type="hidden" name="id" value=<%=item.getId() %> >
 	
 	</div>
 	<div class="">
 		<label class="">市场价</label>
 		<div>
-			<input type="text" name="shichangjia" placeholder="请写入市场价" value="">
+			<input type="text" name="shichangjia" placeholder="请修改市场价" value=<%=item.getShichangjia() %>>
 		</div>
 	</div>
 	<div class="">
 		<label class="">会员价</label>
 		<div>
-			<input type="text" name="huiyuanjia" placeholder="会员价" value="">
+			<input type="text" name="huiyuanjia" placeholder="请修改会员价" value=<%=item.getHuiyuanjia() %>>
 		</div>
 	</div>
 	<div class="">
 		<label class="">特价</label>
 		<div>
-			<tr><td><input type="radio" name="tejia" value="0" checked>特价<input type=radio name="tejia" value="1" >不特价</td><tr>
+			
+			<tr><td><input type="radio" name="tejia" value="0" <%=item.getTejia()==0?"checked":"" %>>特价<input type=radio name="tejia" value="1" <%=item.getTejia()==1?"checked":"" %>>不特价</td><tr>
 		</div>
 	</div>
-	<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="button"  value="取消添加" onclick="cancle()"><input type="submit"  value="提交" onclick="return check();"></td></tr>
+	<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="submit"  value="提交" onclick="return check();"></td></tr>
 </form>
 </center>
 </body>
@@ -125,13 +127,6 @@
 function check(){
 
 	
-	if(frm.file.value==""){
-		 
-		alert("请选择对应的照片");
-			frm.file.focus();
-			return false;
-		
-	}
 	
 	if(frm.name.value==""){
 		alert("名称不为空");
@@ -156,14 +151,10 @@ function check(){
 	}
 	
  
-	else if(frm.firsttyped.value==""){
-		alert("请选择型号");
-		frm.firsttyped.focus();
-		return false;
-	}
+	
 
 	else if(frm.shuliang.value==""||!IsInt(frm.shuliang.value)){
-		alert("数量不能为空 且为数值");
+		alert("数量不能为空 且为数值")
 		frm.shuliang.focus();
 		return false;
 		}
@@ -196,14 +187,16 @@ function checkFileType(str){
 } 
 function cancle(){
 	
-	if(confirm("确认要取消添加吗?"))
+	if(confirm("确认要取消修改吗?"))
 	{
 	window.location.href = "<%=path%>/GoodListServlet";
+	
+
+	
+	
 	}
 	
 }
-
-
 function changeType()
 {
 
@@ -221,36 +214,35 @@ function changeType()
 
 
 		%>
-		var ind = <%=ind%>;
-		if(values==ind){
+	var ind = <%=ind%>;
+	if(values==ind){
 
-			type2.options.length=0;
+		type2.options.length=0;
 
-			<%
-			ArrayList<TbType2> tbType2s = new ArrayList<>(listType1.get(i).getTbType2sById()) ;
-			for(int j=0;j<tbType2s.size();j++ ){
+		<%
+        ArrayList<TbType2> tbType2s = new ArrayList<>(listType1.get(i).getTbType2sById()) ;
+        for(int j=0;j<tbType2s.size();j++ ){
 
-				String name = tbType2s.get(j).getTypename();
-				int id = tbType2s.get(j).getId();
-			%>
-
-
+            String name = tbType2s.get(j).getTypename();
+            int id = tbType2s.get(j).getId();
+        %>
 
 
 
-			var option = new Option("<%=name%>","<%=id%>");
-			type2.options.add(option);
-			<%}%>
-		}
+
+
+		var option = new Option("<%=name%>","<%=id%>");
+		type2.options.add(option);
+		<%}%>
+	}
 	<%}%>
-	
+
 	if(index==0){
 
-	type2.options.length=0;
-}
-	
+		type2.options.length=0;
+	}
+
 }
 
-  
 
 </script>

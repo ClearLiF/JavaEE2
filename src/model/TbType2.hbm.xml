@@ -10,7 +10,7 @@
         </id>
         <property name="typename" column="typename"/>
 
-        <many-to-one name="tbTypeByTypeid" class="model.TbType" lazy="false"  >
+        <many-to-one name="tbTypeByTypeid" class="model.TbType"  >
             <column name="typeid"/>
         </many-to-one>
 

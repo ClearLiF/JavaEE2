@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.TbDingdan" table="tb_dingdan" schema="db_tb">
+        <id name="id" column="id"/>
+        <property name="dingdanhao" column="dingdanhao"/>
+        <property name="shouhuoren" column="shouhuoren"/>
+        <property name="sex" column="sex"/>
+        <property name="dizhi" column="dizhi"/>
+        <property name="youbian" column="youbian"/>
+        <property name="tel" column="tel"/>
+        <property name="shsj" column="shsj"/>
+        <property name="zffs" column="zffs"/>
+        <property name="leaveword" column="leaveword"/>
+        <property name="time" column="time"/>
+        <property name="xiadanren" column="xiadanren"/>
+        <property name="zt" column="zt"/>
+        <property name="total" column="total"/>
+    </class>
+</hibernate-mapping>

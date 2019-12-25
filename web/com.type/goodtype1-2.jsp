@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-    pageEncoding="GB18030" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" import="java.util.*"%>
 <%@ page import="model.TbType2" %>
 <!DOCTYPE html>
 <%
@@ -15,17 +15,17 @@ session.removeAttribute("type");
 <html>
 <link rel="stylesheet" type="text/css" href="<%=path%>/Css/typestyle.css" charset=UTF-8">
 <head>
-<meta charset="GB18030">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 <table class="hovertable" align="center" width="600" height="100" border="0" cellpadding="0"
 			cellspacing="0" >
-<tr>¸¸ÀàidÎª<%=id %></tr>
+<tr>çˆ¶ç±»idä¸º<%=id %></tr>
 
 <tr>
-<th>ÀàĞÍID</th><th>ÀàĞÍÃû³Æ</th><th>É¾³ı²Ù×÷</th>
+<th>ç±»å‹ID</th><th>ç±»å‹åç§°</th><th>åˆ é™¤æ“ä½œ</th>
 </tr>
 <%
 	for (TbType2 type : typelist) {
@@ -35,33 +35,33 @@ session.removeAttribute("type");
 		</td>
 		<td><%=type.getTypename() %>
 		</td>
-		<td><a href="<%=path%>/manage/deleteType2.action?id=<%=type.getId()%>&type1="<%=id%>>É¾³ı</a></td>
+		<td><a href="<%=path%>/manage/deleteType2.action?id=<%=type.getId()%>&type1=<%=id%>">åˆ é™¤</a></td>
 
 
 	</tr>
 	<%} %>
                  
-                 <tr id="price" style="<%=typelist.size()!=0?"display:none":"" %>"><td  class="tb_name" colspan="2">ÇëÎñ±ØÌí¼Ó¶şÀàÉÌÆ·ĞÅÏ¢</td></tr>
+                 <tr id="price" style="<%=typelist.size()!=0?"display:none":"" %>"><td  class="tb_name" colspan="2">è¯·åŠ¡å¿…æ·»åŠ äºŒç±»å•†å“ä¿¡æ¯</td></tr>
                  
                  <tr>
-					<td colspan="40"><a href="<%=path %>/manage/defineTypeFirst.action">·µ»Ø</a>
+					<td colspan="40"><a href="<%=path %>/manage/defineTypeFirst.action">è¿”å›</a>
 			    </tr> 
 		
 </table>
 <div style="width:600;text-align:center ;background-color:#c3dde0">	
 <form action="<%=path%>/manage/addType2.action" method="post" >
 <h1>
-        Ìí¼ÓĞÂµÄÀàĞÍ.
+        æ·»åŠ æ–°çš„ç±»å‹.
 </h1>
 <div class="tableclass">
-		<label class="tableclass">ÀàĞÍÃû³Æ</label>
+		<label class="tableclass">ç±»å‹åç§°</label>
 		<div>
 		 <input type="hidden" name="upjsp" value="2">
 		  <input type="hidden" name="typeid" value=<%=id%>>
-			<input type="text" name="typename" placeholder="ÇëÌîĞ´Ãû³ÆÃû³Æ" value="">
+			<input type="text" name="typename" placeholder="è¯·å¡«å†™åç§°åç§°" value="">
 		</div>
 	</div>
-<tr><td colspan="2" align="center"><input type="reset"  value="ÖØÌî" ><input type="submit"  value="Ìá½»" ></td></tr>
+<tr><td colspan="2" align="center"><input type="reset"  value="é‡å¡«" ><input type="submit"  value="æäº¤" ></td></tr>
 
 </form>
 </div>	

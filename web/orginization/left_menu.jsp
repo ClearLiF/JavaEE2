@@ -32,7 +32,7 @@
 	  }
 var menuList={
 0:{1:"商品类型管理","一级商品":"<%=path%>/manage/defineTypeFirst.action"},
-1:{1:"商品管理","商品信息":"<%=path%>/manage/goodIndex.action","商品添加":"<%=path%>/manage/addGoodDirect","订单管理":"<%=path%>/dingdanListServlet?type=1"},
+1:{1:"商品管理","商品信息":"<%=path%>/manage/goodIndex.action","商品添加":"<%=path%>/manage/addGoodDirect","订单管理":"<%=path%>/manage/getAllDingdan"},
 2:{1:"用户管理","用户信息":"<%=path%>/manage/userGetAll.action"}
 };
 function createMenu(){	

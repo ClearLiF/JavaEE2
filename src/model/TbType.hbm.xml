@@ -9,7 +9,7 @@
             <generator class="native"/>
         </id>
         <property name="typename" column="typename"/>
-        <set name="tbType2sById" inverse="true" lazy="false" cascade="delete,save-update">
+        <set name="tbType2sById" inverse="false" lazy="false" cascade="delete,save-update">
             <key>
                 <column name="typeid"/>
             </key>

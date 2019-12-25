@@ -75,6 +75,7 @@
                 <value>classpath:model/TbShangpin.hbm.xml</value>
                 <value>classpath:model/TbType.hbm.xml</value>
                 <value>classpath:model/TbType2.hbm.xml</value>
+                <value>classpath:model/TbDingdan.hbm.xml</value>
 
             </list>
         </property>
@@ -86,6 +87,7 @@
                 <value>model.TbShangpin</value>
                 <value>model.TbType</value>
                 <value>model.TbType2</value>
+                <value>model.TbDingdan</value>
 
             </list>
         </property>

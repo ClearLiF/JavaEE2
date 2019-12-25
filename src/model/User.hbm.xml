@@ -26,7 +26,7 @@
             <key column="uid"/>
             <one-to-many class="model.TbGouwuche"/>
         </set>
-        <set name="pingluns" inverse="true" cascade="delete">
+        <set name="pingluns" inverse="true" cascade="delete" lazy="false">
             <key column="userid"/>
             <one-to-many class="model.TbPinglun"/>
         </set>

@@ -237,4 +237,27 @@ public class TbShangpin {
     public int hashCode() {
         return Objects.hash(id, mingcheng, jianjie, addtime, dengji, xinghao, tupian, shuliang, cishu, tuijian, typeid, type2Id, type3Id, huiyuanjia, shichangjia, pinpai, tejia);
     }
+
+    @Override
+    public String toString() {
+        return "TbShangpin{" +
+                "id=" + id +
+                ", mingcheng='" + mingcheng + '\'' +
+                ", jianjie='" + jianjie + '\'' +
+                ", addtime='" + addtime + '\'' +
+                ", dengji='" + dengji + '\'' +
+                ", xinghao='" + xinghao + '\'' +
+                ", tupian='" + tupian + '\'' +
+                ", shuliang=" + shuliang +
+                ", cishu=" + cishu +
+                ", tuijian=" + tuijian +
+                ", typeid=" + typeid +
+                ", type2Id=" + type2Id +
+                ", type3Id=" + type3Id +
+                ", huiyuanjia='" + huiyuanjia + '\'' +
+                ", shichangjia='" + shichangjia + '\'' +
+                ", pinpai='" + pinpai + '\'' +
+                ", tejia=" + tejia +
+                '}';
+    }
 }

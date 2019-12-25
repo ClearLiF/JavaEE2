@@ -51,7 +51,7 @@
           	<tr id="price2" style="display:none"><td class="tb_name">添加时间：<%=item.getAddtime() %></td><td  class="tb_name">购买次数：<%=item.getCishu() %></td></tr>
   			<tr id="price3" style="display:none"><td  class="tb_name">品牌：<%=item.getPinpai() %></td><td  class="tb_name">文件位置：<%=item.getTupian() %></td></tr>
           	
-          	<tr><td class="tb_name"><button id="morebutton" onclick="moreInfomation()">查看更多</button></td><td class="tb_name"><button id="editbutton" onclick="javascript:window.location.href='<%=path%>/GoodDefineServlet?good=<%=item.getId() %>'">修改商品信息</button></td><td><button id="editbutton" onclick="delect(<%=item.getId() %>)">删除商品</button></td></tr>
+          	<tr><td class="tb_name"><button id="morebutton" onclick="moreInfomation()">查看更多</button></td><td class="tb_name"><button id="editbutton" onclick="javascript:window.location.href='<%=path%>/manage/defineGoodRedirect?id=<%=item.getId() %>'">修改商品信息</button></td><td><button id="editbutton" onclick="delect(<%=item.getId() %>)">删除商品</button></td></tr>
           	
 	</table>
 	<script>

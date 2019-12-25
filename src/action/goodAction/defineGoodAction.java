@@ -17,64 +17,53 @@ import java.util.UUID;
 
 /*
  *   #auther:李琪
- *   #date: 2019/12/21
+ *   #date: 2019/12/25
  *   #description
  */
 @Controller
-public class addGoodAction extends ActionSupport implements ModelDriven<TbShangpin> {
-
-
+public class defineGoodAction extends ActionSupport implements ModelDriven<TbShangpin> {
+    TbShangpin tbShangpin = new TbShangpin();
+    private File file;
+    //文件类型
+    private String fileContentType;
+    //文件名称
+    private  String fileFileName;
     private IInsertOrUpdateService service;
     @Autowired
     public void setService(IInsertOrUpdateService service) {
         this.service = service;
     }
 
-    private TbShangpin tbShangPin;
-    @Autowired
-    public void setTbShangPin(TbShangpin tbShangPin) {
-        this.tbShangPin = tbShangPin;
-    }
-
-    private File file;
-    //文件类型
-    private String fileContentType;
-    //文件名称
-    private  String fileFileName;
-
     @Override
     public String execute() throws Exception {
         String path = ServletActionContext.getServletContext().getRealPath("/images");
-        //上传文件类型和上传文件地址
-        System.out.println(path);
+        if(!tbShangpin.getTupian().equals(fileFileName)&&null!=file){
+           fileFileName= UUID.randomUUID().toString().replaceAll("-","")+
+                   fileFileName.substring(fileFileName.indexOf("."))
+                   ;
+           tbShangpin.setTupian(fileFileName);
 
-        System.out.println(fileFileName);
-        System.out.println(file.getName());
-
-
-        fileFileName= UUID.randomUUID().toString().replaceAll("-","")+
-                fileFileName.substring(fileFileName.indexOf("."))
-        ;
-        tbShangPin.setTupian(fileFileName);
-
-        File dest = new File(path,fileFileName);
-        try {
-            FileUtils.copyFile(file,dest);
-        } catch (IOException e) {
-            e.printStackTrace();
+           File dest = new File(path,fileFileName);
+            try {
+                FileUtils.copyFile(file,dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("分割线----------------------------------------------");
         }
-
         //下面是新增自动生成的商品资料，如日期
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String time = df.format(new Date());
-        tbShangPin.setAddtime(time);
-        service.insertOrUpdate(tbShangPin);
+        tbShangpin.setAddtime(time);
+        System.out.println(tbShangpin.toString());
+        service.insertOrUpdate(tbShangpin);
         return SUCCESS;
+    }
 
 
-
-
-
+    @Override
+    public TbShangpin getModel() {
+        return tbShangpin;
     }
 
     public File getFile() {
@@ -84,7 +73,6 @@ public class addGoodAction extends ActionSupport implements ModelDriven<TbShangp
     public void setFile(File file) {
         this.file = file;
     }
-
 
     public String getFileContentType() {
         return fileContentType;
@@ -100,10 +88,5 @@ public class addGoodAction extends ActionSupport implements ModelDriven<TbShangp
 
     public void setFileFileName(String fileFileName) {
         this.fileFileName = fileFileName;
-    }
-
-    @Override
-    public TbShangpin getModel() {
-        return tbShangPin;
     }
 }

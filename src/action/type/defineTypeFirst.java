@@ -20,7 +20,7 @@ import java.util.Iterator;
 public class defineTypeFirst extends ActionSupport implements ServletRequestAware {
     IGetAllTypeService typeService;
     HttpServletRequest httpServletRequest;
-    //添加时要使用的id
+    //添加时要使用的一类id
     int id;
     @Autowired
     public void setTypeService(IGetAllTypeService typeService) {
@@ -36,8 +36,7 @@ public class defineTypeFirst extends ActionSupport implements ServletRequestAwar
 
 
         int id = this.id;
-
-
+       //type1
         System.out.println("前台id"+id);
         httpServletRequest.getSession().setAttribute("type",typeService.getTwoType(id));
         System.out.println(typeService.getTwoType(id).size());
