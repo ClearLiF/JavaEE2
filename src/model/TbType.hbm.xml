@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.TbType" table="tb_type" schema="db_tb">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="typename" column="typename"/>
+        <set name="tbType2sById" inverse="true" lazy="false" cascade="delete,save-update">
+            <key>
+                <column name="typeid"/>
+            </key>
+            <one-to-many class="model.TbType2"/>
+        </set>
+    </class>
+</hibernate-mapping>

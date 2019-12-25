@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="logins" extends="struts-default" strict-method-invocation="false" namespace="/loginName">
+        <global-allowed-methods>converts</global-allowed-methods>
+        <action name="login" class="action.login.login4Action" method="login">
+            <result name="success">/login/index.jsp</result>
+            <result name="none">/login/index.jsp</result>
+        </action>
+        <action name="debuge" class="action.login.login" >
+            <result name="success" >/login/login2.jsp</result>
+        </action>
+        <action name="student_*" class="action.register.UserAction" method="{1}">
+            <result name="success" >/login/success.jsp</result>
+        </action>
+        <!--注册action-->
+        <action name="register" class="action.beginService">
+            <result name="success">/login/loginAndRegist.jsp</result>
+        </action>
+        <action name="submit" class="action.login.loginAndRegister">
+            <result name="login2">/login/success.jsp</result>
+            <result name="register2">/login/register.jsp</result>
+        </action>
+        <action name="registerFinal" class="action.login.registerAction" >
+            <result name="success">/login/success.jsp</result>
+        </action>
+    </package>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <!--管理员包-->
+    <package name="manage" namespace="/manage" extends="logins" strict-method-invocation="false">
+        <action name="manageLogin" class="action.manageLogin.manageLogin">
+            <result name="success">/orginization/index.jsp</result>
+        </action>
+        <action name="userGetAll" class="action.actionUser.getAllUser">
+            <result name="success">/customerdefine/customerlist.jsp</result>
+        </action>
+        <action name="deleteUser" class="action.actionUser.deleteUser">
+            <result name="success" type="redirect">userGetAll.action</result>
+        </action>
+        <!--获取用户评论-->
+        <action name="getComments" class="action.actionUser.getMessage">
+            <result name="success" >/customerdefine/customerMessage.jsp</result>
+        </action>
+        <!--冻结或者解封用户-->
+        <action name="dongJie" class="action.actionUser.dongJieUser">
+            <result name="success" type="redirect">userGetAll.action</result>
+        </action>
+
+        <!--显示商品信息-->
+        <action name="getGoods" class="action.goodAction.getAllGoodAction">
+            <result name="success" >/com.shangpin/goodslist.jsp</result>
+        </action>
+        <!--显示商品详细信息-->
+        <action name="getGoodMore" class="action.goodAction.getGoodMore">
+            <result name="success">/com.shangpin/goodsMore.jsp</result>
+        </action>
+        <!--删除商品信息-->
+        <action name="deleteGood" class="action.goodAction.deleteGoodAction">
+            <result name="success" type="redirect">getGoods.action'</result>
+        </action>
+        <!--添加商品-->
+        <action name="addGoodDirect" class="action.goodAction.addGoodActionRedirect">
+            <result name="success">/com.shangpin/goodAdd.jsp</result>
+        </action>
+        <action name="addGood" class="action.goodAction.addGoodAction">
+            <result name="success" type="redirect">getGoods.action</result>
+        </action>
+        <!--查询action-->
+        <action name="search" class="action.goodAction.addGoodActionRedirect">
+            <result name="success">/com.shangpin/search.jsp</result>
+        </action>
+        <action name="goodIndex" class="action.beginService">
+            <result name="success">/com.shangpin/goodsIndex.jsp</result>
+        </action>
+
+        <action name="searchUseString" class="action.goodAction.searchGoodAction" method="searchUseString">
+            <result name="success">/com.shangpin/goodslist.jsp</result>
+        </action>
+        <action name="searchUseByType" class="action.goodAction.searchGoodAction" method="searchGoodByType">
+            <result name="success">/com.shangpin/goodslist.jsp</result>
+        </action>
+
+        <!--修改类型或者添加类型-->
+        <action name="defineTypeFirst" class="action.type.defineTypeFirst">
+            <result name="success">/com.type/goodtype1list.jsp</result>
+        </action>
+        <!--根据id返回类型二的数据-->
+        <action name="defineTypeSecond" class="action.type.defineTypeFirst" method="getTypeTwo">
+            <result name="success">/com.type/goodtype1-2.jsp</result>
+        </action>
+        <!--删除指定id类型-->
+        <action name="deleteType1" class="action.type.deleteType" method="deleteTypeOne">
+            <result name="success" type="chain">defineTypeFirst</result>
+        </action>
+        <!--删除指定id子类类型-->
+        <action name="deleteType2" class="action.type.deleteType" method="deleteTypeTwo">
+            <result name="success" type="redirect">defineTypeSecond.action</result>
+        </action>
+
+        <!--添加一类类型-->
+        <action name="addType1" class="action.type.addType" method="addType1">
+            <result name="success" >/com.type/goodtype1-2.jsp</result>
+        </action>
+        <!--添加二类类型-->
+        <action name="addType2" class="action.type.addType" method="addType2">
+            <result name="success" type="redirectAction">
+                <param name="actionName">defineTypeSecond</param>
+                <!--一类类型id-->
+                <param name="id">${id}</param>
+            </result>
+        </action>
+    </package>
+</struts>

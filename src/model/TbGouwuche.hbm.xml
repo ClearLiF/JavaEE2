@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.TbGouwuche" table="tb_gouwuche" schema="db_tb">
+        <id name="id" column="id"/>
+        <property name="spid" column="spid"/>
+
+        <property name="num" column="num"/>
+        <property name="addtime" column="addtime"/>
+        <many-to-one name="user" class="model.User" column="uid" lazy="proxy"  />
+    </class>
+</hibernate-mapping>

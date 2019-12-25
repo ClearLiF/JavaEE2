@@ -1,0 +1,45 @@
+@charset "utf-8";
+.td8 {
+	BACKGROUND-COLOR: #f1fbf1; BORDER-BOTTOM: #a1a1a1 1pt solid
+}
+BODY {
+	COLOR: #000000; FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
+	background-image : url(../images/welcome.png);
+	
+	font-family : fantasy;
+}
+BODY:color{
+	color : #5728FF;
+}
+TD {
+	FONT-FAMILY: fantasy; FONT-SIZE: 9pt; LINE-HEIGHT: 15pt
+}
+TD.text{
+	bgColor:#1f65c2;
+	LINE-HEIGHT: 15pt;
+	FONT-FAMILY : fantasy;
+}
+
+A:link {
+	COLOR: white; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: white; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #5b2222;TEXT-DECORATION: underline
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+.someclass {
+	
+	
+	background:#0078B7;	
+    font-size: 18px;
+    font-weight: bold;
+	
+}
+ 
+
+

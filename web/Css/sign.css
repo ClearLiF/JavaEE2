@@ -1,0 +1,58 @@
+@charset "GB18030";
+
+BODY{
+	background-color: #ffb164
+}
+/*BODY{
+    background-color: linear-gradient(to right, #D8D8D8 , #66b5b7);
+}*/
+}
+.bg {
+	FONT-FAMILY: 幼圆; FONT-SIZE: 9pt; LINE-HEIGHT: 15pt;  color: white
+}
+H2{
+	FONT-FAMILY: 等线; FONT-SIZE: 32pt; LINE-HEIGHT: 30pt; COLOR: white; -webkit-text-stroke: 1px black
+}
+H3{
+	FONT-FAMILY: 等线; FONT-SIZE: 21pt; LINE-HEIGHT: 21pt; COLOR: white; -webkit-text-stroke: 1px black
+}
+TABLE{
+	
+}
+.star{
+	COLOR : red
+}
+td{
+	background-color: #ffb164; font-family: 等线;/*#17aace*/
+	color : white;
+	border: 0px
+}
+th{
+	background-color: #ffb164; font-family: 幼圆;
+	color : white;
+	border : 0px
+}
+.button {
+    background-color: #666666;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.button2:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/*body {
+  font-family: "Open Sans", Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  color: #848484;
+  background-color: #f0f0f0;
+}**/

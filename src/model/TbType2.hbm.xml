@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.TbType2" table="tb_type2" schema="db_tb" lazy="false">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="typename" column="typename"/>
+
+        <many-to-one name="tbTypeByTypeid" class="model.TbType" lazy="false"  >
+            <column name="typeid"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

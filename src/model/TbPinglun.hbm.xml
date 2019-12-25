@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.TbPinglun" table="tb_pinglun" schema="db_tb">
+        <id name="id" column="id"/>
+
+        <property name="title" column="title"/>
+
+        <property name="content" column="content"/>
+        <property name="time" column="time"/>
+        <many-to-one name="user" column="userid" class="model.User" cascade="delete,save-update" />
+        <many-to-one name="shangpin" class="model.TbShangpin" column="spid"/>
+    </class>
+
+
+</hibernate-mapping>

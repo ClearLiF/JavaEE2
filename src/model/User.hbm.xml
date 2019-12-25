@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.User" table="tb_user" schema="db_tb">
+        <id name="id" column="id"/>
+        <property name="name" column="name"/>
+        <property name="pwd" column="pwd"/>
+        <property name="dongjie" column="dongjie"/>
+        <property name="email" column="email"/>
+        <property name="tel" column="tel"/>
+        <property name="qq" column="qq"/>
+        <property name="ip" column="ip"/>
+        <property name="tishi" column="tishi"/>
+        <property name="huida" column="huida"/>
+        <property name="dizhi" column="dizhi"/>
+        <property name="youbian" column="youbian"/>
+        <property name="regtime" column="regtime"/>
+        <property name="lastlogintime" column="lastlogintime"/>
+        <property name="logincishu" column="logincishu"/>
+        <property name="truename" column="truename"/>
+        <property name="pwd1" column="pwd1"/>
+        <set name="gouwuches" inverse="false" cascade="delete">
+            <key column="uid"/>
+            <one-to-many class="model.TbGouwuche"/>
+        </set>
+        <set name="pingluns" inverse="true" cascade="delete">
+            <key column="userid"/>
+            <one-to-many class="model.TbPinglun"/>
+        </set>
+    </class>
+</hibernate-mapping>

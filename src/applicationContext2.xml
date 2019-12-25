@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:contest="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                              http://www.springframework.org/schema/context
+                              http://www.springframework.org/schema/context/spring-context.xsd
+                                http://www.springframework.org/schema/tx
+                                http://www.springframework.org/schema/tx/spring-tx.xsd
+ http://www.springframework.org/schema/aop
+                                http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--创建一个sessionFactory-->
+    <bean id="sessionFactory2" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--配置hibernate的配置文件路径就好了-->
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+    <!--创建hibernate的模板-->
+    <bean id="hibernateTemple" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory2"/>
+    </bean>
+
+    <!--创建dao-->
+    <bean id="studentDao" class="dao.impl.StudentDao">
+        <property name="template" ref="hibernateTemple"/>
+    </bean>
+    <!--创建service-->
+    <bean id="studentService" class="service.impl.StudentService">
+        <property name="studentDao" ref="studentDao"/>
+    </bean>
+    <bean id="studenadd" class="test.demo01">
+        <property name="studentService" ref="studentService"/>
+    </bean>
+
+
+    <!--配置c3p0数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/db_tb?serverTimezone=UTC"/>
+        <property name="user" value="root"/>
+        <property name="password" value="password"/>
+    </bean>
+    <bean id="txManger" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--配置DataSource-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--2开启注解的驱动-->
+    <tx:annotation-driven transaction-manager="txManger"></tx:annotation-driven>
+    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+              <property name="sessionFactory" ref="sessionFactory"></property>
+             </bean>
+         &lt;!&ndash; 开启事务管理 &ndash;&gt;
+        <tx:annotation-driven transaction-manager="transactionManager"/>
+-->
+
+
+
+</beans>

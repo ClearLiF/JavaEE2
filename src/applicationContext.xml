@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:contest="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                              http://www.springframework.org/schema/context
+                              http://www.springframework.org/schema/context/spring-context.xsd
+                                http://www.springframework.org/schema/tx
+                                http://www.springframework.org/schema/tx/spring-tx.xsd
+ http://www.springframework.org/schema/aop
+                                http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--配置c3p0数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/db_tb?serverTimezone=UTC"/>
+        <property name="user" value="root"/>
+        <property name="password" value="password"/>
+    </bean>
+
+
+
+    <!--配置事务管理器-->
+    <bean id="txManger" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory2"/>
+
+    </bean>
+    <!--配置通知事务管理器-->
+    <!--测试使用的是springTx2中的test2-->
+    <tx:advice id="txAdvice" transaction-manager="txManger">
+        <!--配置事务详情:传播行为，隔离级别-->
+        <tx:attributes>
+            <tx:method name="register" propagation="REQUIRED" isolation="DEFAULT"/>
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--使用spring 的aop来配置-->
+    <aop:config>
+        <aop:pointcut id="mypoint" expression="execution(* service..*.*(..))"/>
+        <!--事务 与切入点关联-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="mypoint"/>
+    </aop:config>
+
+
+
+
+
+    <!--创建一个sessionFactory-->
+    <bean id="sessionFactory2" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--datasores-->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/db_tb?serverTimezone=UTC</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</prop>
+            </props>
+        </property>
+        <!--映射文件路径-->
+        <property name="mappingLocations">
+
+            <list>
+                <value>classpath:model/*.hbm.xml</value>
+                <value>classpath:model/User.hbm.xml</value>
+                <value>classpath:model/TbGouwuche.hbm.xml</value>
+                <value>classpath:model/TbGouwuche.hbm.xml</value>
+                <value>classpath:model/TbPinglun.hbm.xml</value>
+                <value>classpath:model/TbShangpin.hbm.xml</value>
+                <value>classpath:model/TbType.hbm.xml</value>
+                <value>classpath:model/TbType2.hbm.xml</value>
+
+            </list>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>model.User</value>
+                <value>model.TbGouwuche</value>
+                <value>model.TbPinglun</value>
+                <value>model.TbShangpin</value>
+                <value>model.TbType</value>
+                <value>model.TbType2</value>
+
+            </list>
+        </property>
+    </bean>
+    <!--创建hibernate的模板-->
+    <bean id="hibernateTemple" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory2"/>
+    </bean>
+
+    <!--创建dao-->
+    <bean id="studentDao" class="dao.impl.StudentDao">
+        <property name="template" ref="hibernateTemple"/>
+    </bean>
+    <!--创建service-->
+    <bean id="studentService" class="service.impl.StudentService">
+        <property name="studentDao" ref="studentDao"/>
+    </bean>
+
+    <!--创建登录dao-->
+    <bean id="studentLogin" class="dao.login.impl.LoginDao">
+        <property name="template" ref="hibernateTemple"/>
+    </bean>
+    <!--创建登录service-->
+    <bean id="studentLoginService" class="service.login.impl.LoginService">
+        <property name="loginDao" ref="studentLogin"/>
+    </bean>
+
+    <bean id="tbShangPin" class="model.TbShangpin">
+        <property name="cishu" value="0"/>
+        <property name="type3Id" value="0"/>
+    </bean>
+
+    <!--开启注解-->
+    <contest:annotation-config/>
+    <!--注解的位置-->
+    <contest:component-scan base-package="dao"/>
+    <contest:component-scan base-package="service"/>
+    <contest:component-scan base-package="model"/>
+    <!--创建注册dao-->
+    <!--<bean id="studentRegister" class="dao.login.impl.RegisterDao">
+        <property name="template" ref="hibernateTemple"/>
+    </bean>-->
+    <!--创建注册Service-->
+    <!--<bean id="registerService" class="service.login.impl.RegisterService">
+        <property name="register" ref="studentRegister"/>
+    </bean>-->
+
+
+    <!--2开启注解的驱动-->
+
+    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+              <property name="sessionFactory" ref="sessionFactory"></property>
+             </bean>
+         &lt;!&ndash; 开启事务管理 &ndash;&gt;
+        <tx:annotation-driven transaction-manager="transactionManager"/>
+-->
+
+
+
+</beans>

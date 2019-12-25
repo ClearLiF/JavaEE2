@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.TbShangpin" table="tb_shangpin" schema="db_tb">
+        <id name="id" column="id"/>
+        <property name="mingcheng" column="mingcheng"/>
+        <property name="jianjie" column="jianjie"/>
+        <property name="addtime" column="addtime"/>
+        <property name="dengji" column="dengji"/>
+        <property name="xinghao" column="xinghao"/>
+        <property name="tupian" column="tupian"/>
+        <property name="shuliang" column="shuliang"/>
+        <property name="cishu" column="cishu"/>
+        <property name="tuijian" column="tuijian"/>
+        <property name="typeid" column="typeid"/>
+        <property name="type2Id" column="type2id"/>
+        <property name="type3Id" column="type3id"/>
+        <property name="huiyuanjia" column="huiyuanjia"/>
+        <property name="shichangjia" column="shichangjia"/>
+        <property name="pinpai" column="pinpai"/>
+        <property name="tejia" column="tejia"/>
+        <set name="tbPingluns" cascade="save-update,delete">
+            <key column="spid"/>
+            <one-to-many class="model.TbPinglun"/>
+        </set>
+    </class>
+</hibernate-mapping>
