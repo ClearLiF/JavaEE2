@@ -17,7 +17,7 @@
 <head>
 <meta charset="GB18030">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/styles.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/styles.css" charset=UTF-8">
 </head>
 <body>
 <table class="hovertable" align="center" width="600" height="100" border="0" cellpadding="0"

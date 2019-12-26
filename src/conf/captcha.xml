@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="pach" extends="struts-default" namespace="/pach">
+        <!--//生命一个结果类型 验证码-->
+        <result-types>
+            <result-type name="captcha" class="pach.CAPTCHAR"></result-type>
+        </result-types>
+        <!--配置action-->
+        <action name="chechcode">
+            <result name="success" type="captcha">
+                <!--这个在执行的时候会调用自定义的方法-->
+
+            </result>
+        </action>
+    </package>
+
+
+</struts>

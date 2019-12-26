@@ -76,6 +76,7 @@
                 <value>classpath:model/TbType.hbm.xml</value>
                 <value>classpath:model/TbType2.hbm.xml</value>
                 <value>classpath:model/TbDingdan.hbm.xml</value>
+                <value>classpath:model/TbAdmin.hbm.xml</value>
 
             </list>
         </property>
@@ -88,6 +89,7 @@
                 <value>model.TbType</value>
                 <value>model.TbType2</value>
                 <value>model.TbDingdan</value>
+                <value>model.TbAdmin</value>
 
             </list>
         </property>
@@ -97,23 +99,8 @@
         <property name="sessionFactory" ref="sessionFactory2"/>
     </bean>
 
-    <!--创建dao-->
-    <bean id="studentDao" class="dao.impl.StudentDao">
-        <property name="template" ref="hibernateTemple"/>
-    </bean>
-    <!--创建service-->
-    <bean id="studentService" class="service.impl.StudentService">
-        <property name="studentDao" ref="studentDao"/>
-    </bean>
 
-    <!--创建登录dao-->
-    <bean id="studentLogin" class="dao.login.impl.LoginDao">
-        <property name="template" ref="hibernateTemple"/>
-    </bean>
-    <!--创建登录service-->
-    <bean id="studentLoginService" class="service.login.impl.LoginService">
-        <property name="loginDao" ref="studentLogin"/>
-    </bean>
+
 
     <bean id="tbShangPin" class="model.TbShangpin">
         <property name="cishu" value="0"/>

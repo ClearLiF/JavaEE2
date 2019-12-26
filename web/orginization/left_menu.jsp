@@ -9,7 +9,7 @@
 </head>
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=path%>/Css/menu_style.css" type="text/css" charset=UTF-8">
+<link rel="stylesheet" href="<%=path%>/css2/menu_style.css" type="text/css" charset=UTF-8">
 <TITLE>menu</TITLE>
 </HEAD>
 <script>

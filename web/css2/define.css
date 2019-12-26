@@ -1,20 +1,17 @@
-
-@charset "utf-8";
 BODY {
-	COLOR: #000000; FONT-FAMILY: 瀹嬩綋; FONT-SIZE: 9pt;
+	COLOR: #000000; FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
 	background-image : url(../images/welcome.png);
 	
 	font-family : fantasy;
 }
 form{
-	聽color : #5728FF;
-	
+	 color : #5728FF;
+
 }
 .smart-green {
 		background:  #B0D3FF;
- 	聽margin-left: auto;
-聽聽  聽width : 200px;
-	
+ 	 margin-left: auto;
+		width: 600px;
 	
 }
 .selectPage{ 
@@ -30,5 +27,5 @@ form{
 		}
 
 
-聽聽 聽聽聽
-聽聽 聽
+      
+    

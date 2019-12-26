@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 
-<frameset rows="20%,80%" >
+<frameset rows="15%,*" >
 
 	<frame src ="<%=path %>/manage/search.action" name="left_navi" noresize scrolling="auto">
 	<frame  src="<%=path %>/manage/getGoods.action"   name=down_search>

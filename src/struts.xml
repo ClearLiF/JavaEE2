@@ -31,9 +31,63 @@
         </action>
     </package>
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+
+    <!--验证码包-->
+    <package name="pach" extends="struts-default" namespace="/pach">
+        <!--//生命一个结果类型 验证码-->
+        <result-types>
+            <result-type name="captcha" class="action.manageLogin.CAPTCHAR"/>
+        </result-types>
+        <!--配置action-->
+        <action name="chechcode">
+            <result name="success" type="captcha">
+                <!--这个在执行的时候会调用自定义的方法-->
+            </result>
+        </action>
+    </package>
+    <!--管理员登录包-->
+    <package name="loginManage" namespace="/logins" strict-method-invocation="false" extends="struts-default">
+        <!--拦截器-->
+        <interceptors>
+            <!--注册拦截器-->
+            <interceptor name="loginInterceptor" class="action.manageLogin.LoginInterceptor"/>
+            <!--自定义拦截器栈-->
+            <interceptor-stack name="loginStack">
+                <!--引用默认拦截器-->
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="loginInterceptor">
+                    <!--跳过的方法-->
+                    <param name="excludeMethods">login, loginRed</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <!--定义默认栈-->
+        <default-interceptor-ref name="loginStack"/>
+        <!--定义全局返回页-->
+        <global-results>
+            <result name="failure" type="chain">manageHome</result>
+        </global-results>
+        
+        <!--管理首页-->
+        <action name="manageHome" class="action.manageLogin.manageLogin" method="loginRed">
+            <result name="success">/manageLogin/home.jsp</result>
+        </action>
+        <!--管理员登录页面-->
+        <action name="loginPage" class="action.manageLogin.manageLogin" method="loginRed">
+            <result name="success">/manageLogin/login.jsp</result>
+        </action>
+        <!--管理登录-->
+        <action name="manageLogin" class="action.manageLogin.loginAction" method="login">
+            <result name="error" >/manageLogin/login.jsp</result>
+            <result name="success" type="redirect">/manage/manageLogins.action</result>
+        </action>
+
+
+    </package>
+
     <!--管理员包-->
-    <package name="manage" namespace="/manage" extends="logins" strict-method-invocation="false">
-        <action name="manageLogin" class="action.manageLogin.manageLogin">
+    <package name="manage" namespace="/manage" extends="loginManage" strict-method-invocation="false">
+        <action name="manageLogins" class="action.manageLogin.manageLogin">
             <result name="success">/orginization/index.jsp</result>
         </action>
         <action name="userGetAll" class="action.actionUser.getAllUser">
@@ -61,14 +115,14 @@
         </action>
         <!--删除商品信息-->
         <action name="deleteGood" class="action.goodAction.deleteGoodAction">
-            <result name="success" type="redirect">getGoods.action'</result>
+            <result name="success" type="redirect">getGoods.action</result>
         </action>
         <!--添加商品-->
         <action name="addGoodDirect" class="action.goodAction.addGoodActionRedirect">
             <result name="success">/com.shangpin/goodAdd.jsp</result>
         </action>
         <action name="addGood" class="action.goodAction.addGoodAction">
-            <result name="success" type="redirect">getGoods.action</result>
+            <result name="success" type="redirect">goodIndex.action</result>
         </action>
         <!--修改商品信息-->
         <action name="defineGoodRedirect" class="action.goodAction.getGoodMore" method="defineGood">

@@ -13,7 +13,7 @@ session.removeAttribute("type");
 
 %>
 <html>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/typestyle.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/typestyle.css" charset=UTF-8">
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -49,7 +49,7 @@ session.removeAttribute("type");
 		
 </table>
 <div style="width:600;text-align:center ;background-color:#c3dde0">	
-<form action="<%=path%>/manage/addType2.action" method="post" >
+<form action="<%=path%>/manage/addType2.action" method="post" name="frm">
 <h1>
         添加新的类型.
 </h1>
@@ -61,10 +61,28 @@ session.removeAttribute("type");
 			<input type="text" name="typename" placeholder="请填写名称名称" value="">
 		</div>
 	</div>
-<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="submit"  value="提交" ></td></tr>
+<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="submit"  value="提交" onclick="return check()" ></td></tr>
 
 </form>
 </div>	
 
 </body>
 </html>
+<script>
+
+
+	function check(){
+
+
+		if(frm.typename.value===""){
+
+			alert("请填写相应内容");
+			frm.typename.focus();
+			return false;
+
+		}else {
+			return true;
+		}
+
+	}
+</script>

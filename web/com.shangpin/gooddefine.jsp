@@ -20,7 +20,7 @@
     %>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/define.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/define.css" charset=GBK">
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -124,58 +124,69 @@
 </html>
 <script type="text/javascript" src = "<%=path%>/js/datacheck.js"></script>
 <script language="javaScript">
-function check(){
+	function check(){
 
-	
-	
-	if(frm.name.value==""){
-		alert("名称不为空");
-		frm.name.focus();
-		return false;
-	}
-	
-	if(frm.jianjie.value==""){
-		alert("简介不为空");
-		frm.jianjie.focus();
-		return false;
-	}
-	if(frm.xinghao.value==""||!IsInt(frm.xinghao.value)){
-		alert("型号不为空且为数值");
-		frm.xinghao.focus();
-		return false;
-	}
-	if(frm.pinpai.value==""){
-		alert("品牌不为空");
-		frm.pinpai.focus();
-		return false;
-	}
-	
- 
-	
 
-	else if(frm.shuliang.value==""||!IsInt(frm.shuliang.value)){
-		alert("数量不能为空 且为数值")
-		frm.shuliang.focus();
-		return false;
-		}
-	else if(frm.shichangjia.value==""||!IsInt(frm.shichangjia.value)){
-		alert("市场价不能为空 且为数值")
-		frm.shichangjia.focus();
-		return false;
-		}
-	else if(frm.huiyuanjia.value==""||!IsInt(frm.huiyuanjia.value)){
-		alert("会员价不能为空 且为数值")
-		frm.huiyuanjia.focus();
-		return false;
-		}
-	else if(frm.tejia.value==""||!IsInt(frm.tejia.value)){
-		alert("数量不能为空 且为数值")
-		frm.tejia.focus();
-		return false;
+		if(frm.file.value===""){
+
+			alert("请选择对应的照片");
+			frm.file.focus();
+			return false;
+
 		}
 
-	return true;
-}
+		if(frm.mingcheng.value===""){
+			alert("名称不为空");
+			frm.mingcheng.focus();
+			return false;
+		}
+
+		if(frm.jianjie.value===""){
+			alert("简介不为空");
+			frm.jianjie.focus();
+			return false;
+		}
+		if(frm.xinghao.value===""||!IsInt(frm.xinghao.value)){
+			alert("型号不为空且为数值");
+			frm.xinghao.focus();
+			return false;
+		}
+		if(frm.pinpai.value===""){
+			alert("品牌不为空");
+			frm.pinpai.focus();
+			return false;
+		}
+
+
+		if(frm.typeid.value===""){
+			alert("请选择型号");
+			frm.typeid.focus();
+			return false;
+		}
+
+		if(frm.shuliang.value===""||!IsInt(frm.shuliang.value)){
+			alert("数量不能为空 且为数值");
+			frm.shuliang.focus();
+			return false;
+		}
+		if(frm.shichangjia.value===""||!IsInt(frm.shichangjia.value)){
+			alert("市场价不能为空 且为数值")
+			frm.shichangjia.focus();
+			return false;
+		}
+		if(frm.huiyuanjia.value===""||!IsInt(frm.huiyuanjia.value)){
+			alert("会员价不能为空 且为数值")
+			frm.huiyuanjia.focus();
+			return false;
+		}
+		if(frm.tejia.value===""||!IsInt(frm.tejia.value)){
+			alert("数量不能为空 且为数值")
+			frm.tejia.focus();
+			return false;
+		}
+
+		return true;
+	}
 function checkFileType(str){  
     var pos = str.lastIndexOf(".");  
     var lastname = str.substring(pos,str.length);  

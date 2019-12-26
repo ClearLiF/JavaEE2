@@ -17,7 +17,7 @@
 %>
 
 <html>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/styles.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/styles.css" charset=UTF-8">
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -58,7 +58,7 @@
 	function delect(id){
 		if(confirm("确定要删除该商品？"+id)){
 
-			window.location.href = "<%=path%>/manage/deleteGood?id="+id;
+			window.location.href = "<%=path%>/manage/deleteGood.action?id="+id;
 			
 
 			}

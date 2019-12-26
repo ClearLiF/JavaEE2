@@ -13,7 +13,7 @@
     %>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/styles.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/styles.css" charset=UTF-8">
 <head>
 <meta charset="GB18030">
 <title>Insert title here</title>

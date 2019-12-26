@@ -11,7 +11,7 @@
 
 	<frame src="../orginization/left_menu.jsp" name="left_navi" noresize scrolling="auto">
 
-	<frameset rows="80%,*">
+	<frameset rows="85%,*">
 		<frame  src="../orginization/right.jsp"   name=right_workspace>
 		<frame src="../orginization/guanggap2.html">
 	</frameset>

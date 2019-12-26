@@ -19,17 +19,14 @@
     %>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/define.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/define.css" charset=UTF-8">
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
-<form action="<%=path%>/GoodsAddServlet" method="post" name="hide">
-<input type="hidden" name="add" value="add">
-</form>
 
-<center>
+<div style="text-align: center ;width: 60%">
 
 <form action="<s:url namespace="/manage" action="addGood"/>" method="post" name="frm" class="smart-green" enctype="multipart/form-data" >
 	<h1>商品
@@ -117,15 +114,16 @@
 	</div>
 	<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="button"  value="取消添加" onclick="cancle()"><input type="submit"  value="提交" onclick="return check();"></td></tr>
 </form>
-</center>
+
+</div>
 </body>
 </html>
 <script type="text/javascript" src = "<%=path%>/js/datacheck.js"></script>
 <script language="javaScript">
 function check(){
 
-	
-	if(frm.file.value==""){
+
+	if(frm.file.value===""){
 		 
 		alert("请选择对应的照片");
 			frm.file.focus();
@@ -133,51 +131,51 @@ function check(){
 		
 	}
 	
-	if(frm.name.value==""){
+	if(frm.mingcheng.value===""){
 		alert("名称不为空");
-		frm.name.focus();
+		frm.mingcheng.focus();
 		return false;
 	}
 	
-	if(frm.jianjie.value==""){
+	if(frm.jianjie.value===""){
 		alert("简介不为空");
 		frm.jianjie.focus();
 		return false;
 	}
-	if(frm.xinghao.value==""||!IsInt(frm.xinghao.value)){
+	if(frm.xinghao.value===""||!IsInt(frm.xinghao.value)){
 		alert("型号不为空且为数值");
 		frm.xinghao.focus();
 		return false;
 	}
-	if(frm.pinpai.value==""){
+	if(frm.pinpai.value===""){
 		alert("品牌不为空");
 		frm.pinpai.focus();
 		return false;
 	}
 	
  
-	else if(frm.firsttyped.value==""){
+	if(frm.typeid.value===""){
 		alert("请选择型号");
-		frm.firsttyped.focus();
+		frm.typeid.focus();
 		return false;
 	}
 
-	else if(frm.shuliang.value==""||!IsInt(frm.shuliang.value)){
+	if(frm.shuliang.value===""||!IsInt(frm.shuliang.value)){
 		alert("数量不能为空 且为数值");
 		frm.shuliang.focus();
 		return false;
 		}
-	else if(frm.shichangjia.value==""||!IsInt(frm.shichangjia.value)){
+ if(frm.shichangjia.value===""||!IsInt(frm.shichangjia.value)){
 		alert("市场价不能为空 且为数值")
 		frm.shichangjia.focus();
 		return false;
 		}
-	else if(frm.huiyuanjia.value==""||!IsInt(frm.huiyuanjia.value)){
+	 if(frm.huiyuanjia.value===""||!IsInt(frm.huiyuanjia.value)){
 		alert("会员价不能为空 且为数值")
 		frm.huiyuanjia.focus();
 		return false;
 		}
-	else if(frm.tejia.value==""||!IsInt(frm.tejia.value)){
+ if(frm.tejia.value===""||!IsInt(frm.tejia.value)){
 		alert("数量不能为空 且为数值")
 		frm.tejia.focus();
 		return false;

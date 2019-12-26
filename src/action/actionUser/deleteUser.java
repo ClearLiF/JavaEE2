@@ -2,6 +2,7 @@ package action.actionUser;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import service.userService.IDeleteUserService;
 
@@ -11,6 +12,7 @@ import service.userService.IDeleteUserService;
  *   #description
  */
 @Controller
+@Scope
 public class deleteUser extends ActionSupport {
     String id;
 

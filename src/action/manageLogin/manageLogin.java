@@ -10,6 +10,12 @@ import com.opensymphony.xwork2.ActionSupport;
 public class manageLogin extends ActionSupport {
     @Override
     public String execute() throws Exception {
+
+
+        System.out.println("管理员登录");
+        return SUCCESS;
+    }
+    public String loginRed(){
         System.out.println("管理员登录");
         return SUCCESS;
     }

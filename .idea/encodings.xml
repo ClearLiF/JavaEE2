@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/web/Css/shop.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/define.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/form.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/menu_style.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/shop.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/sign.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/student.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/styles.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/styles2.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/css2/typestyle.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/js/bootstrapValidator.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/js/bootstrapValidator.min.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/js/jquery-3.1.1.min.js" charset="GBK" />
   </component>
 </project>

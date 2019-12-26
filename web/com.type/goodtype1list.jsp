@@ -18,7 +18,7 @@
 <meta charset="utf-8">
 <title>类型页面</title>
 </head>
-<link rel="stylesheet" type="text/css" href="<%=path%>/Css/typestyle.css" charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css2/typestyle.css" charset=UTF-8">
 <body>
 <table class="hovertable" align="center" width="600" height="100" border="0" cellpadding="0"
 			cellspacing="0" >
@@ -43,7 +43,7 @@ for(int i=0;i<typelist.size();i++){
 		
 </table>
 <div style="width:100%;text-align:center ;background-color:#c3dde0">	
-<form action="<%=path%>/manage/addType1.action" method="post" >
+<form action="<%=path%>/manage/addType1.action" method="post" name="frm">
 <h1>
         添加新的类型.
 </h1>
@@ -54,9 +54,11 @@ for(int i=0;i<typelist.size();i++){
 			<input type="text" name="typename" placeholder="请填写名称名称" value="">
 		</div>
 	</div>
-<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="submit"  value="提交" ></td></tr>
+<tr><td colspan="2" align="center"><input type="reset"  value="重填" ><input type="submit"  value="提交" onclick="return check()"></td></tr>
 
 </form>
+
+
 </div>	
 
 </body>
@@ -73,6 +75,20 @@ function delect( id){
 	
 	}
 	
+}
+function check(){
+
+
+	if(frm.typename.value===""){
+
+		alert("请填写相应内容");
+		frm.typename.focus();
+		return false;
+
+	}else {
+		return true;
+	}
+
 }
 
 
